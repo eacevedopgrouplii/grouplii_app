@@ -25,7 +25,7 @@
                 var Dropbox = require('dropbox').Dropbox;
                 var dbx = new Dropbox(config)
 
-                dbx.auth.getAccessTokenFromCode("http://localhost:8080/auth", this.code)
+                dbx.auth.getAccessTokenFromCode("http://https://container-grouplii-frontend-uymd3d36pa-uc.a.run.app/auth", this.code)
                 .then((response) => {                    
                     console.log(response.result.access_token);
                     console.log(`Token Result:${JSON.stringify(response.result.access_token)}`);

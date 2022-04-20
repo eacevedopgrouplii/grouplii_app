@@ -125,7 +125,7 @@ export default {
                 "consolidated": this.load_unload_table_json["consolidated"],
                 "observations": this.load_unload_table_json["observations"]
             }
-            axios.post("http://127.0.0.1:8000/load_unload", load_unload_table).then((result) => {
+            axios.post("https://container-grouplii-backend-uymd3d36pa-uc.a.run.app/load_unload", load_unload_table).then((result) => {
                 console.log(result);
             });
 
@@ -135,11 +135,11 @@ export default {
             for (const index in this.inventory_load_unload_json) {
                 
                 let inventory_load_unload = this.inventory_load_unload_json[index]
-                axios.put("http://127.0.0.1:8000/update_items/" + inventory_load_unload['barcode_id'], inventory_load_unload).then((result) => {
+                axios.put("https://container-grouplii-backend-uymd3d36pa-uc.a.run.app/update_items/" + inventory_load_unload['barcode_id'], inventory_load_unload).then((result) => {
                 console.log(result);
             });
             }
-            axios.put("http://127.0.0.1:8000/update_inventory/" + load_unload_table["inventory_reference"] + "?status=load").then((result) => {
+            axios.put("https://container-grouplii-backend-uymd3d36pa-uc.a.run.app/update_inventory/" + load_unload_table["inventory_reference"] + "?status=load").then((result) => {
                 console.log(result);
             });
             
@@ -154,7 +154,7 @@ export default {
                 "subject": "TEST WITH LOAD PROCESS"
             };
 
-            axios.post("http://127.0.0.1:8000/email", load_unload_email).then((result) => {
+            axios.post("https://container-grouplii-backend-uymd3d36pa-uc.a.run.app/email", load_unload_email).then((result) => {
                 console.log(result);
             });
                 

@@ -98,7 +98,7 @@ import axios from "axios";
         this.barcode = result;
         this.$bvModal.hide('modal-prevent-closing')
 
-        axios.get("http://127.0.0.1:8000/get_inventory/"+ result).then((response) => {
+        axios.get("https://container-grouplii-backend-uymd3d36pa-uc.a.run.app/get_inventory/"+ result).then((response) => {
 
                 this.inventory_detail = response.data;
                 this.inventory_reference = this.inventory_detail[0]['inventory_reference'];

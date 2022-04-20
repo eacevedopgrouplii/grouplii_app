@@ -185,7 +185,7 @@ import axios from "axios";
       }
     },
     created: function () {
-    const ref = 'https://www.dropbox.com/oauth2/authorize?response_type=code&client_id='+ process.env.VUE_APP_DROPBOX +'&redirect_uri=http://localhost:8080/auth&token_access_type=offline'
+    const ref = 'https://www.dropbox.com/oauth2/authorize?response_type=code&client_id='+ process.env.VUE_APP_DROPBOX +'&redirect_uri=http://https://container-grouplii-frontend-uymd3d36pa-uc.a.run.app/auth&token_access_type=offline'
         window.open(ref, "_blank");
     } 
   }

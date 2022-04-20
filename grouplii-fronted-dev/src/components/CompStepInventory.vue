@@ -103,7 +103,7 @@ export default {
                 "subject": "TEST WITH INVENTORY PROCESS"
                 }
 
-            axios.post("http://127.0.0.1:8000/create_inventory", inventory_table_complete).then((result) => {
+            axios.post("https://container-grouplii-backend-uymd3d36pa-uc.a.run.app/create_inventory", inventory_table_complete).then((result) => {
                 console.log(result);
             });
 
@@ -127,12 +127,12 @@ export default {
 
                 }
                 console.log(inventory_detail_table_complete);
-                axios.post("http://127.0.0.1:8000/create_inventory_detail", inventory_detail_table_complete).then((result) => {
+                axios.post("https://container-grouplii-backend-uymd3d36pa-uc.a.run.app/create_inventory_detail", inventory_detail_table_complete).then((result) => {
                 console.log(result);
                 });
             }
 
-            axios.post("http://127.0.0.1:8000/email", post_email).then((result) => {
+            axios.post("https://container-grouplii-backend-uymd3d36pa-uc.a.run.app/email", post_email).then((result) => {
                 console.log(result);
             });
 

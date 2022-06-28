@@ -44,7 +44,14 @@
                 <input :class="['input', ($v.form.email.$error) ? 'is-danger' : '']"  type="text" placeholder="Email input" v-model="form.email">
             </div>
             <p v-if="$v.form.email.$error" class="help is-danger">This email is invalid</p>
-        </div>        
+        </div>       
+        <div class="field">
+            <label class="label">EMAIL_SEND:</label>
+            <div class="control">
+                <input :class="['input', ($v.form.email_send.$error) ? 'is-danger' : '']"  type="text" placeholder="Email to send input" v-model="form.email_send">
+            </div>
+            <p v-if="$v.form.email_send.$error" class="help is-danger">This email is invalid</p>
+        </div>  
     </div>
 </template>
 
@@ -63,6 +70,7 @@
                     origin: '',
                     phone: '',
                     email: '',
+                    email_send: ''
                 }
             }
         },
@@ -85,7 +93,10 @@
                 },
                 email: {
                     required,                   
-                }
+                },
+                email_send:{
+                    
+                }                
             }
         },
         watch: {

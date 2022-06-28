@@ -97,7 +97,8 @@ export default {
         },
         // Executed when @stepper-finished event is triggered
         alert() {   
-            this.getNow();                     
+            this.getNow();  
+            this.info_client = JSON.parse(localStorage.getItem("inventory_reference") || '[]');                   
             this.load_unload_table_json = JSON.parse(localStorage.getItem("load_unload_table") || '[]');
             let load_unload_table = {
                 "inventory_load_unload_id": 0,
@@ -141,22 +142,26 @@ export default {
             axios.put("https://container-grouplii-backend-uymd3d36pa-uc.a.run.app/update_inventory/" + load_unload_table["inventory_reference"] + "?status=unload").then((result) => {
                 console.log(result);
             });
+            
+
+            let config_email = this.load_unload_table_json['email_send'].split(',');
+            config_email.push(this.info_client[2])
 
             let load_unload_email = {
-                "email": [
-                    "fobiber773@yeafam.com"
-                    ],
+                "email": config_email,
                 "body": {
                     "info_general_load_unload" : load_unload_table,
                         "info_items": this.inventory_load_unload_json},
-                "subject": "TEST WITH UNLOAD PROCESS"
+                "subject": "UNLOAD PROCESS " + this.load_unload_table_json['clientName'] + " / " + this.load_unload_table_json['reference']
             };
 
             axios.post("https://container-grouplii-backend-uymd3d36pa-uc.a.run.app/email", load_unload_email).then((result) => {
                 console.log(result);
             });
 
-            this.$router.push('/home');            
+            
+
+            this.$router.push('home/operator');            
 
         }
     }

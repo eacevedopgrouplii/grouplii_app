@@ -42,7 +42,14 @@
                 <input :class="['input', ($v.form.photosNumber.$error) ? 'is-danger' : '']" type="text" placeholder="Text input"
                        v-model="form.photosNumber">
             </div>
-        </div>     
+        </div>    
+        <div class="field">
+            <label class="label">EMAIL_SEND:</label>
+            <div class="control">
+                <input :class="['input', ($v.form.email_send.$error) ? 'is-danger' : '']"  type="text" placeholder="Email to send input" v-model="form.email_send">
+            </div>
+            <p v-if="$v.form.email_send.$error" class="help is-danger">This email is invalid</p>
+        </div>  
     </div>
 </template>
 
@@ -61,7 +68,8 @@ import {required} from 'vuelidate/lib/validators'
                     tare: '',
                     hourStart: '',                    
                     space: '',
-                    photosNumber: ''
+                    photosNumber: '',
+                    email_send: ''
                 }
             }
         },
@@ -83,6 +91,9 @@ import {required} from 'vuelidate/lib/validators'
                 },
                 photosNumber:{
                     required
+                },
+                email_send:{
+
                 }
             }
         },

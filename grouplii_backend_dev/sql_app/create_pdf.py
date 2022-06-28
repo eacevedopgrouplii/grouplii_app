@@ -50,7 +50,7 @@ def fill_pdf(body_dict):
             'email': body_dict["info_general_inventory"].get("email",""),
             'destination': body_dict["info_general_inventory"].get("destination","")
         }
-        path_input_pdf = r"./static/inventario_1.0.pdf"
+        path_input_pdf = r"./static/inventario_10.pdf"
         path_output_pdf = "./static/inventario_filled" + body_dict["info_general_inventory"].get('reference','') + ".pdf"
         dict_finally = create_dict_inventory(body_dict, initial_dict)   
 
@@ -77,7 +77,7 @@ def fill_pdf(body_dict):
             'observations': body_dict["info_general_load_unload"].get("observations","")
         }
 
-        path_input_pdf = r"./static/TARJETA_DE_CHEQUEO_1.0.pdf"
+        path_input_pdf = r"./static/TARJETA_DE_CHEQUEO_10.pdf"
         path_output_pdf = "./static/TARJETA_DE_CHEQUEO" + body_dict["info_general_load_unload"].get('inventory_reference','') + ".pdf"
         dict_finally = create_dict_load_unload(body_dict, initial_dict)       
             

@@ -3,9 +3,8 @@
   <div class="card-header">Seleccione el tipo de proceso</div>
   <div class="card-body" >
     <ul class="list-group list-group-flush">
-    <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="home/new_inventory  " role="tab" aria-controls="home">Nuevo Inventario</a>
-    <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="home/follow_inventory  " role="tab" aria-controls="profile">Seguir Inventario</a>
-    <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Almacenaje</a>    
+    <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="new_inventory  " role="tab" aria-controls="home">Nuevo Inventario</a>
+    <a class="list-group-item list-group-item-  action" id="list-profile-list" data-toggle="list" href="follow_inventory  " role="tab" aria-controls="profile">Seguir Inventario</a>
   </ul>
   </div>    
 </div>

@@ -164,7 +164,7 @@ import axios from "axios";
       }
     },
     created() {
-      const ref = 'https://www.dropbox.com/oauth2/authorize?response_type=code&client_id='+ process.env.VUE_APP_DROPBOX +'&redirect_uri=http://https://container-grouplii-frontend-uymd3d36pa-uc.a.run.app/auth&token_access_type=offline'
+      const ref = 'https://www.dropbox.com/oauth2/authorize?response_type=code&client_id='+ process.env.VUE_APP_DROPBOX +'&redirect_uri=https://container-grouplii-frontend-uymd3d36pa-uc.a.run.app/auth&token_access_type=offline'
       window.open(ref, "_blank");
       this.id_inventory = JSON.parse(localStorage.getItem("inventory_reference") || '[]');
       axios.get("https://container-grouplii-backend-uymd3d36pa-uc.a.run.app/get_inventory_detail/"+ this.id_inventory[0]).then((response) => {

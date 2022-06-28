@@ -63,7 +63,8 @@ import axios from "axios";
         inventory_detail : [],     
         inventory_reference : '',
         clients_name: '',
-        status_inventory: ''  
+        status_inventory: '',
+        clients_email: ''  
       }
     },
     methods: {
@@ -103,7 +104,8 @@ import axios from "axios";
                 this.inventory_detail = response.data;
                 this.inventory_reference = this.inventory_detail[0]['inventory_reference'];
                 this.clients_name = this.inventory_detail[0]['clients_name'];
-                localStorage.setItem('inventory_reference',JSON.stringify([this.inventory_reference, this.clients_name]));
+                this.clients_email = this.inventory_detail[0]['inventory_email'];
+                localStorage.setItem('inventory_reference',JSON.stringify([this.inventory_reference, this.clients_name, this.clients_email]));
                 console.log(this.inventory_detail['status_inventory'])
                 if (this.inventory_detail[0]['status_inventory'] == "packing"){   
                   this.status_inventory = "cargue"               

@@ -79,6 +79,7 @@ export default {
         // Executed when @stepper-finished event is triggered
         alert(payload) {
             
+            
             console.log(payload);
             this.inventory_table = JSON.parse(localStorage.getItem("inventory_table") || '[]');
             this.inventory_table_detail = JSON.parse(localStorage.getItem("inventory_table_detail") || '[]');
@@ -95,12 +96,14 @@ export default {
                 "status_inventory" : "packing"
             };
 
+            let config_email = this.inventory_table['email_send'].split(',');
+            config_email.push(this.inventory_table['email'])
+
+
             let post_email = {
-                "email": [
-                    "fobiber773@yeafam.com"
-                    ],
+                "email": config_email,
                 "body": {"info_general_inventory" :this.inventory_table, "info_detail" : this.inventory_table_detail},
-                "subject": "TEST WITH INVENTORY PROCESS"
+                "subject": "INVENTORY PROCESS " + this.inventory_table['clientname'] + " / " + this.inventory_table['reference']
                 }
 
             axios.post("https://container-grouplii-backend-uymd3d36pa-uc.a.run.app/create_inventory", inventory_table_complete).then((result) => {
@@ -136,8 +139,9 @@ export default {
                 console.log(result);
             });
 
-            
-            this.$router.push('/home');
+            console.log("Text Ok");
+
+            this.$router.psuh('home/operator');
             
         }   
     }

@@ -57,20 +57,21 @@ export default {
   methods:{
     login(){
       let json = {
-        "usuario" : this.user,
+        "username" : this.user,
         "password": this.password
       };
-      axios.post('https://api.solodata.es/auth', json )
-      .then(data =>{
-        if(data.data.status == "ok"){
-          console.log("Todo ok");
-          this.$router.push('Home').catch(()=>{});
-        }else{
-          this.error = true;
-          this.error_msg = data.data.result.error_msg;
-
-        }        
-      } )
+      axios.post('https://container-grouplii-backend-uymd3d36pa-uc.a.run.app/login', json )
+      .then(data =>{        
+        if(data.status == 200){
+            localStorage.setItem('user',JSON.stringify(data));
+          if(data.data.role == "admin"){
+            this.$router.push({ path: '/home/admin' }).catch(()=>{});
+          }
+          else {
+            this.$router.push('home/operator').catch(()=>{});
+          }
+        } 
+      } ) 
     
     }
   }

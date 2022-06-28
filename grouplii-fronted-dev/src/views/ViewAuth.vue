@@ -1,10 +1,20 @@
 <template>
     <div>
-        <h1>Hi!
-            <small class="text-muted">I am page 1!</small>
-        </h1>
-        <p>I have a dynamic id value of {{code}}</p>        
-    </div>
+    <b-card no-body class="overflow-hidden" style="max-width: 540px;">
+        <b-row no-gutters>
+        <b-col md="6">
+            <b-card-img src="@/assets/Logo_grouplii.jpg" alt="Image" class="rounded-0"></b-card-img>
+        </b-col>
+        <b-col md="6">
+            <b-card-body title="Inicializando conexión con Dropbox">
+            <b-card-text>
+                Creando el acceso para almacenar imagenes Dropbox.
+            </b-card-text>
+            </b-card-body>  
+        </b-col>
+        </b-row>
+    </b-card>
+</div>
 </template>
 
 <script>
@@ -25,7 +35,7 @@
                 var Dropbox = require('dropbox').Dropbox;
                 var dbx = new Dropbox(config)
 
-                dbx.auth.getAccessTokenFromCode("http://https://container-grouplii-frontend-uymd3d36pa-uc.a.run.app/auth", this.code)
+                dbx.auth.getAccessTokenFromCode("https://container-grouplii-frontend-uymd3d36pa-uc.a.run.app/auth", this.code)
                 .then((response) => {                    
                     console.log(response.result.access_token);
                     console.log(`Token Result:${JSON.stringify(response.result.access_token)}`);

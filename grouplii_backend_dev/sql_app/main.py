@@ -1,12 +1,13 @@
 from typing import List
-
 from fastapi import Depends, FastAPI, HTTPException, BackgroundTasks
 from fastapi_mail import FastMail, MessageSchema,ConnectionConfig
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy.orm import Session
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import JSONResponse
-
+from fastapi.security import OAuth2PasswordRequestForm
+from .hashing import Hash
+from .jwttoken import create_access_token
 from . import models, schemas, send_email, create_pdf
 from .database import SessionLocal, engine
 
@@ -16,7 +17,7 @@ app = FastAPI()
 
 origins = [
     "http://localhost",
-    "http://https://container-grouplii-frontend-uymd3d36pa-uc.a.run.app",
+    "https://container-grouplii-frontend-uymd3d36pa-uc.a.run.app",
     "http://localhost:8081"
 ]
 
@@ -177,3 +178,29 @@ async def send_with_template(email: schemas.EmailSchema) -> JSONResponse:
     fm = FastMail(send_email.conf)
     await fm.send_message(message, template_name="email.html") 
     return JSONResponse(status_code=200, content={"message": "email has been sent"})
+
+
+@app.post('/register')
+def create_user(input:schemas.Users, db:Session=Depends(get_db)):
+    
+    users = models.Users(                        
+                        username = input.username,
+                        email = input.email,
+                        password = Hash.bcrypt(input.password),
+                        role = input.role)
+    db.add(users)
+    db.commit()
+    db.refresh(users)
+    return {"res":"created"}
+
+
+@app.post('/login')
+def login(request:schemas.Users, db:Session=Depends(get_db)):
+    user = db.query(models.Users).filter(models.Users.username == request.username).first()       
+    print(user) 	
+    if not user:
+        raise HTTPException(status_code=404,detail = f'No user found with this {request.username} username')
+    if not Hash.verify(user.password,request.password):
+        raise HTTPException(status_code=404,detail = f'Wrong Username or password')
+    access_token = create_access_token(data={"sub": user.username})
+    return {"access_token": access_token, "token_type": "bearer", "role": user.role}

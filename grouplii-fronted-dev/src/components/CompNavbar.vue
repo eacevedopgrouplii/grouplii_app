@@ -1,7 +1,7 @@
 <template>
 <div >
   <nav class="navbar navbar-dark navbar-expand-sm" style="background: rgb(8, 40, 160)">
-  <a class="navbar-brand" href="/home">
+  <a class="navbar-brand" href="/home/admin">
     <img src="@/assets/Logo_grouplii.jpg"  width="150" height="50" alt="logo">
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list-4" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

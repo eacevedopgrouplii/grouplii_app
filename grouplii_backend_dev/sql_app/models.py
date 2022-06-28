@@ -50,13 +50,13 @@ class LoadUnloadTable(Base):
     container_type = Column(String, index=True)
     container_number = Column(Integer, index=True)
     tare = Column(String, index=True)
-    hour_start = Column(DateTime, index=True)
-    hour_end = Column(DateTime, index=True)
+    hour_start = Column(String, index=True)
+    hour_end = Column(String, index=True)
     space = Column(String, index=True)
     number_photos = Column(Integer, index=True)
     client_name = Column(String, index=True)
     inventory_reference =Column(String, index=True)
-    inventory_date = Column(DateTime, index=True)
+    inventory_date = Column(String, index=True)
     total_pieces = Column(Integer, index=True)
     total_vans = Column(Integer, index=True)
     volume_m3 = Column(String, index=True)
@@ -70,3 +70,13 @@ class LoadUnloadTable(Base):
     license_plate = Column(String, index=True)
     consolidated = Column(String, index=True)
     observations = Column(String, index=True) 
+
+
+class Users(Base):
+    __tablename__ = "users"
+    
+    id_user = Column(Integer, primary_key=True, index=True)
+    username = Column(String, index=True)
+    email = Column(String, index=True)
+    password  = Column(String, index=True)
+    role = Column(String, index=True)

@@ -48,13 +48,13 @@ class LoadUnloadTable(BaseModel):
     container_type : str
     container_number : int
     tare : str 
-    hour_start : datetime
-    hour_end : datetime
+    hour_start : str
+    hour_end : str
     space : str
     number_photos : int
     client_name : str
     inventory_reference : str 
-    inventory_date : datetime
+    inventory_date : str
     total_pieces : int  
     total_vans : int  
     volume_m3 : str 
@@ -71,4 +71,27 @@ class LoadUnloadTable(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class Users(BaseModel):
+
+    id_user: Optional[int]
+    username: str
+    email: Optional[str]
+    password: str
+    role: Optional[str]   
+
+    class Config:
+        orm_mode = True
+
+class Login(BaseModel):
+	username: str
+	password: str
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class TokenData(BaseModel):
+    username: Optional[str] = None
 
